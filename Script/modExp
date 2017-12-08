@@ -1,0 +1,26 @@
+#!/bin/sh
+EXE_DIR=$1
+NL=$2;
+ME=$3
+k1=1029199; 	#Oxfb44f Hamming weight = 13
+k2=361241;		#Ox58319 Hamming weight = 8
+
+if [[ $ME = 'BL' ]]; then
+	ins=modExp.rv
+elif [[ $ME == modExp* ]]; then
+	ins=$ME
+else
+	ins=modExp_$ME.rv
+fi
+
+for (( i=1; i <= $NL; ++i ))
+do	
+	#echo $ins
+	~/fesvr-zynq ~/pk $EXE_DIR/$ins $k1 0
+done
+
+for (( i=1; i <= $NL; ++i ))
+do
+	#echo $ins
+	~/fesvr-zynq ~/pk $EXE_DIR/$ins $k2 1
+done

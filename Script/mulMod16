@@ -1,0 +1,26 @@
+#!/bin/bash
+EXE_DIR=$1
+NL=$2
+ME=$3
+#a1=0xcafe0000; 	
+
+a1=$((0xcafe0000));
+a2=$((0xbeefcafe));
+
+if [ $ME = 'BL' ]; then
+	ins=mulMod16.rv
+elif [[ $ME == mulMod16* ]]; then
+	ins=$ME	
+else 
+	ins=mulMod16_$ME.rv
+fi
+
+for (( i=1; i <= $NL; ++i ))
+do	
+	~/fesvr-zynq ~/pk $EXE_DIR/$ins $a1 0
+done
+
+for (( i=1; i <= $NL; ++i ))
+do
+	~/fesvr-zynq ~/pk $EXE_DIR/$ins $a2 1
+done
