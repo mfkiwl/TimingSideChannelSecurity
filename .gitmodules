@@ -1,3 +1,7 @@
 [submodule "fpga-zynq"]
 	path = fpga-zynq
 	url = https://github.com/ucb-bar/fpga-zynq.git
+[submodule "riscv-linux"]
+	path = riscv-linux
+	url = https://github.com/phthinh/riscv-linux
+	branch = priv-1.9
